@@ -15,10 +15,10 @@ describe Monologue::Post do
   it { validate_presence_of(:content) }
   it { validate_presence_of(:published_at) }
 
-  it "should create permalink (url) automatically with title and year if none is provided" do
+  it "should create permalink (url) automatically with title if none is provided" do
     title = "this is a great title!!!"
     post = Factory(:post, url: "", title: title, published_at: "2012-02-02")
-    post.url.should == "2012/this-is-a-great-title"
+    post.url.should == "this-is-a-great-title"
   end
 
   it "should not let you create a post with a url starting with a '/'" do
@@ -36,7 +36,7 @@ describe Monologue::Post do
     pr = Factory(:post, url: nil, title: "unique title", published_at: DateTime.new(2011))
     pr.content = "Something changed"
     pr.save
-    pr.url.should == "2011/unique-title"
+    pr.url.should == "unique-title"
   end
 
   describe "post's tags" do

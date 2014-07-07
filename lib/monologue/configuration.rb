@@ -30,8 +30,13 @@ module Monologue
                     :google_analytics_id,
                     :gauge_analytics_site_id,
                     :layout,
-                    :sidebar
+                    :sidebar,
+                    :post_length
 
+  end
+
+  def post_length
+    @post_length || 300
   end
 
   def self.config(&block)

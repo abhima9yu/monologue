@@ -56,8 +56,7 @@ class Monologue::Post < ActiveRecord::Base
 
   def generate_url
     return unless self.url.blank?
-    year = self.published_at.class == ActiveSupport::TimeWithZone ? self.published_at.year : DateTime.now.year
-    self.url = "#{year}/#{self.title.parameterize}"
+    self.url = self.title.parameterize
   end
 
   def url_do_not_start_with_slash
